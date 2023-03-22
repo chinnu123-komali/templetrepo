@@ -1,23 +1,21 @@
-# Repo: MySpace/TemplateRepo
-# File: azure-pipeline.yml
-
-name: cicd_ci
-
+name: sampleWeb_$(Date:yyyyMMdd)$(Rev:.r)
 trigger:
-  branches:
-    include:
-      - master
-
-stages:
-- stage: CI_Checks
-  jobs:
-  - job:
-    displayName: yamllint_checks
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - script: |
-        python -m pip install --upgrade pip
-        pip install yamllint
-        yamllint -d "{extends: relaxed, rules: {line-length: {max: 200}, new-line-at-end-of-file: disable, new-lines: disable}}" .
-      displayName: 'YAML Lint Checks'
+- main
+jobs:
+- job: ActivityonLinux
+  pool:
+   name: default
+  steps:
+  - script: echo Hello, world!
+    displayName: 'Run a one-line script'
+- job: ActivityonWindows
+  pool:
+   name: Default
+  steps:
+   - task: PowerShell@2
+     inputs:
+       targetType: 'inline'
+       script: |
+         # Write your PowerShell commands here.
+         
+         Write-Host "Hello World"
