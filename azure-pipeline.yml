@@ -4,13 +4,13 @@ trigger:
 jobs:
 - job: ActivityonLinux
   pool:
-   name: default
+   vmImage: 'windows-latest'
   steps:
   - script: echo Hello, world!
     displayName: 'Run a one-line script'
 - job: ActivityonWindows
   pool:
-   name: Default
+   vmImage: 'windows-latest'
   steps:
    - task: PowerShell@2
      inputs:
